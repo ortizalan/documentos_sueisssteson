@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container-sm justify-content-center">
+    <div class="card-header div-black-form text-center" >
+        <div class="row" style="padding-top: 25px;">
+            <div class="col">
+                <img src="{{url_for('static',filename = 'imgs/user.png')}}" class="logo-img-usr">
+            
+                <h3 class="titulo-crear texxt-center mt-5">{% block title %}Ingresar Trabajador{% endblock %}</h3>
+            </div>
+        </div>
+    </div>
+    <form method="post" class="form-design">
+        <div class="form-group">
+            <!-- ****************************** -->
+            <div class="row mt-0">
+                <!-- Número de Empleado -->
+                <div class="col col-12 col-md-6 mt-3">
+                    <label for="numero"><p class="p-forms">Número de Empleado</p></label>
+                    <input type="text" id="numero" name="numero" class="form-control form-control-sm">
+                </div> 
+                <!-- Nombre -->
+                <div class="col col-12 col-md-6 mt-3">
+                    <label for="nombre"><p class="p-forms">Nombre :</p></label>
+                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm text-uppercase">
+                </div>
+            </div>
+            <!-- ***************************** -->
+            <div class="row mt-2">
+                <!-- AP PATERNO -->
+                <div class="col col-12 col-md-6">
+                    <label for="paterno"><p class="p-forms">AP Paterno :</p></label>
+                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm text-uppercase">
+                </div>
+                <!-- AP MATERNO -->
+                <div class="col col-12 col-md-6">
+                    <label for="materno"><p class="p-forms">AP Materno</p></label>
+                    <input type="text" name="materno" id="materno" class="form-control form-control-sm text-uppercase">
+                </div>
+            </div>
+            <!-- ****************************** -->
+            <div class="row mt-2">
+                <!-- FECHA DE INGRESO -->
+                <div class="col col-12 col-md-6">
+                    <label for="f_ingreso"><p class="p-forms">Fecha Ingreso : </p></label>
+                    <input type="date" name="f_ingreso" id="f_ingreso" class="form-control form-control-sm" required>
+                </div>
+                <!-- RFC -->
+                <div class="col col-12 col-md-6">
+                    <label for="rfc"><p class="p-forms">RFC : </p></label>
+                    <input type="text" name="rfc" id="rfc" max="13" class="form-control form-control-sm">
+                </div>
+            </div>
+            <!-- ********************************* -->
+            <div class="row mt-2">
+                <!-- CURP -->
+                <div class="col col-12 col-md-6">
+                    <label for="curp"><p class="p-forms">CURP : </p></label>
+                    <input type="text" name="curp" id="curp" class="form-control form-control-sm">
+                </div>
+                <!-- AFILIACION -->
+                <div class="col col-12 col-md-6">
+                    <label for="afiliacion"><p class="p-forms">Afiliación : </p></label>
+                    <input type="text" name="afiliacion" id="afiliacion" class="form-control form-control-sm">
+                </div>
+            </div>
+            <!-- ************************ -->
+            <div class="row mt-2">
+                <div class="col col-12 col-md-6">
+                    <label for="pension"><p class="p-forms">Pensión : </p></label>
+                    <input type="text" name="pension" id="pension" class="form-control form-control-sm">
+                </div>
+            </div>
+            <!-- ************************ -->
+            <div class="row mt-2">
+                <!-- NIVEL -->
+                <div class="col col-12 col-md-6">
+                    <!-- ------------- -->
+                    <label for="nivel"><p class="p-forms">Nivel : </p></label>
+                    <select class="form-control form-select form-select-sm"
+                        name="nivel" id="nivel" required>
+                        <option selected>-- SELECCION OPCIÓN --</option>
+                        {% for n in niveles %}
+                            <option value="{{n.nivel}}">{{n.nivel}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!-- OPCIÓN -->
+                <div class="col col-12 col-md-6">
+                    <label for="opcion"><p class="p-forms">Opción : </p></label>
+                    <select class="form-control form-select form-select-sm"
+                        name="opcion" id="nivel">
+                        <option selected>-- SELECCIONE OPCIÓN --</option>
+                        {% for o in opciones %}
+                            <option value="{{o.opcion}}">{{o.opcion}}</option>
+                        {% endfor %}
+                </select>
+                </div>                
+            </div>
+            <!-- ************************ -->
+            <div class="row mt-2">
+                <!-- CATEGORIA -->
+                <div class="col col-12 col-md-6">
+                    <label for="categoria"><p class="p-forms">Categoria : </p></label>
+                    <select class="form-control form-select form-select-sm" 
+                        name="categoria" id="categoria" required>
+                        <option selected>-- SELECCIONE OPCIÓN --</option>
+                        {% for c in cates %}
+                            <option value="{{c.id}}">{{c.categoria}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!-- GENERO -->
+                <div class="col col-12 col-md-6">
+                    <label for="genero"><p class="p-forms">Género : </p></label>
+                    <select class="form-control form-select form-select-sm"
+                        name="genero" id="genero" required>
+                        <option selected>-- SELECCIONE OPCIÓN --</option>
+                        {% for g in generos %}
+                            <option value="{{g.id}}">{{g.genero}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <!-- ************************ -->
+            <div class="row mt-2">
+                <!-- SINDICATOS -->
+                <div class="col col-12 col-md-6">
+                    <label for="sindicatos"><p class="p-forms">Sindicatos : </p></label>
+                    <select class="form-control form-select form-select-sm"
+                        name="sindicatos" id="sindicatos" required>
+                        <option selected>-- SELECCIONE OPCIÓN --</option>
+                        {% for s in sindicatos %}
+                            <option value="{{s.id}}">{{s.sindicato}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!-- LOCALIDADES -->
+                <div class="col col-12 col-md-6">
+                    <label for="localidad"><p class="p-forms">Localidad : </p></label>
+                    <select class="form-control form-select form-select-sm" 
+                        name="localidad" id="localidad" required>
+                        <option selected>-- SELECCIONE OPCIÓN --</option>
+                        {% for l in localidades %}
+                            <option value="{{l.codigo}}">{{l.municipio}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <!-- ******************** -->
+            <div class="row mt-3 text-center">
+                <div class="col col-12">
+                    <button class="btn boton-guardar">GUARDAR</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+{% endblock %}
+
+{% block footer %}
+<script>
+    var field = document.querySelector('#f_ingreso');
+    var date = new Date();
+
+    field.value = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2,0) +
+    '-' + date.getDate().toString().padStart(2,0);
+</script>
+{% endblock %}

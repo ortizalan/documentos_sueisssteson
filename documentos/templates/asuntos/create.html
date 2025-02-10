@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="container-sm">
+    <h3 class="text-center mt-3 mb-3">{% block title %}Ingresar Asunto{% endblock %}</h3>
+    <form method="post">
+        <!-- Asunto -->
+        <div class="form-group">
+            <label for="asunto">Asunto</label>
+            <input type="text" class="form-control" name="asunto" id="asunto" required>
+        </div>
+        <!-- Número de Empleado -->
+        <div class="form-group">
+            <label for="empleado">Número de Empleado</label>
+            <input type="text" class="form-control" name="empleado" id="empleado" required>
+        </div>
+        <!-- Fecha de Creación -->
+        <div class="form-group">
+            <label for="fecha">Fecha de Creación</label>
+            <input type="date" class="form-control" name="fecha" id="fecha" value="{{c_date}}" readonly />
+        </div>
+        <!-- Secretaría -->
+        <div class="form-group">
+            <label for="secretaria">ID Secretaría</label>
+            <input type="text" class="form-control" name="secretaria" id="secretaria" 
+            value="{{g.user.secretaria}}" readonly />
+        </div>
+        <!-- Estatus Ingresado-->
+         <div class="form-group">
+            <label for="estatus">Estatus</label>
+            <input type="text" class="form-control" name="estatus" id="estatus"
+            value="1" readonly />
+         </div>
+         <br>
+         <div class="text-center">
+            <input type="submit" class="btn btn-primary" value="Guardar">
+            <a href="{{url_for('asuntos.index')}}" class="btn btn-secondary">Cancelar</a>
+         </div>
+    </form>
+</section>
+
+{% endblock %}

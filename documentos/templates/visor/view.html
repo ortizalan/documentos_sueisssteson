@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container text-center mt-3">
+    <div class="card-header text-center div-2">
+        <img src="{{url_for('static', filename = 'imgs/sueisssteson_2.png')}}" alt="">
+    </div>
+    <div class="card-header justify-content-center div-2">
+        <nav class="navbar">
+            <h3>{% block title %}Visor Documentos{% endblock %}</h3>
+            <a href="{{url_for('docs.index', a = asunto, sria = sria)}}" class="btn btn-primary btn-lg">Volver a Documentos</a>
+        </nav>
+    </div>
+
+    {% if ext == "pdf" %}
+        <object data="{{ url_for('static', filename = 'docs/documento.pdf') }}" type=""
+        width="800px" height="800px"></object>     
+    {% else %}
+        <img src="data:;base64,{{ docu }}">
+    {% endif %}
+
+</div>
+
+{% endblock %}

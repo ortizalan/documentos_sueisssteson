@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <title>Employees</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<script>
+  $(document).ready(function() {
+    $('#lookup').DataTable(
+    {
+        "responsive": true
+    });
+    $('#lookup_filter input').focus()
+    //$('#lookup_filter [type="search"]').focus()
+    });
+</script>
+
+<button class="btn-warning fa fa-search" data-toggle="modal" data-target="#Emply">Employee</button>
+
+<div class="modal fade" id="Emply" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="bg-warning modal-title" style="text-align:center" id="myModalLabel">List Employee</h4>
+        </div></strong>
+        <div class="modal-body">
+            <table id="lookup" class="display responsive" width="100%">
+                <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>ID</th>
+                      <th>Employee</th>
+                      <th>Saldo</th>
+                    </tr>
+                </thead>
+                <tbody>                
+                    <tr>
+                      <td>1</td>
+                      <td>40001</td>
+                      <td>JOHN THOR</td>
+                      <td>10000</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>40002</td>
+                      <td>JOHN WICK</td>
+                      <td>20000</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>40003</td>
+                      <td>JOHN CENA</td>
+                      <td>20000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="cointainer-sm mt-5">
+    <div class="row justify-content-center">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header text-center div-2">
+                    <h3 class="text-center mt-3 mb-3">{% block title %}Editar Documento{% endblock %}</h3>    
+                </div>
+                <div class="card-body div-1 text-bold">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <!-- Nombre del Documento -->
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre" value="{{ docs.nombre }}" required>
+                        </div>
+                        <br>
+                        <!-- Documento -->
+                        <div class="form-group">
+                            <label for="documento">Nuevo Documento</label>
+                            <div class="input-group">
+                                <span class="btn btn-primary btn-file">
+                                    Cargar <input accept=".jpg,.jepg,.png,.tif,.tiff,.pdf" multiple
+                                            class="hidden" name="documento" id="documento" type="file">
+                                </span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <input type="submit" class="btn btn-primary" value="Actualizar">
+                            <a href="{{url_for('docs.index', a = 4545, sria = 5)}}" class="btn btn-secondary">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p>Objeto : </p>
+{{docs.id}}
+<br>
+{{docs.asunto}}
+<br>
+{{docs.secretaria}}
+{% endblock %}

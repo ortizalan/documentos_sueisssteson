@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="container-sm mt-3">
+    <div class="card-header text-center div-2">
+        <img src="{{url_for('static', filename = 'imgs/sueisssteson_2.png')}}" alt="">
+    </div>
+    <div class="card-header justify-content-center div-2">
+        <nav class="navbar">
+            <h3>{% block title %}Secretarias{% endblock %}</h3>
+        </nav>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="col">ID</th>
+                <th class="col">Secretaría</th>
+                <th class="col">Código</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in srias %}
+            <tr>
+                <td>
+                    {{s.id}}
+                </td>
+                <td>
+                    {{s.secretaria}}
+                </td>
+                <td>
+                    {{s.codigo}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="container mt-3">
+    <!-- Cabecera -->
+    <div class="card-header text-center div-2">
+        <img src="{{url_for('static', filename = 'imgs/sueisssteson_2.png')}}" class="logo-img" alt="">
+    </div>
+    <div class="card-header justify-content-center div-2">
+        <nav class="navbar">
+            <h1 class="titulo-asuntos">{% block title %}Actualizar Asunto{% endblock %}</h1>
+        </nav>
+    </div>
+    <!-- Forma para Actualizar -->
+    <form method="post">
+        <div class="form-group">
+            <div class="row mb-3">
+                <div class="col col-12-col-md-6 mt-2">
+                    <label for="folio">Folio : </label>
+                    <input type="text" name="folio" id="folio" class="form-control" 
+                        value="{{conflicto.folio}}" readonly>
+                </div>
+                <div class="col col-12 col-md-6 mt-2">
+                    <label for="secretaria">Secretaria : </label>
+                    <input type="text" class="form-control" name="secretaria" id="secretaria" 
+                    value="{{sria}}" readonly>
+                </div>
+            </div>
+        </div>
+        <!-- Asunto -->
+        <div class="form-group">
+            <div class="row mb-3">
+                <div class="col col-12 col-md-6">
+                    <label for="clausula">Cláusula / Convenio : </label>
+                    <input type="text" class="form-control" name="clausula" id="clausula" 
+                    value="{{conflicto.clausula_convenio}}">
+                </div>
+                <div class="col col-12 col-md-6 mt-2">
+                    <label for="asunto">Seleccionar Asunto : </label>
+                    <select name="asunto" id="asunto" class="form-select">
+                        <!-- <option selected>--OPCIÓN SELECCIONADA--</option> -->
+                        {%for asnt in asuntos %}
+                            {% if asnt.id == asuntoid %}
+                                <option value="{{asnt.id}}" selected>{{asnt.asunto}}</option>
+                            {% else %}
+                                <option value="{{asnt.id}}">{{asnt.asunto}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+         <!-- Otro Renglón -->
+        <div class="form-group">
+            <div class="row mb-3">
+                <div class="col-col-12 col-md-6">
+                    <label for="info">Información Extra : </label>
+                    <input type="text" class="form-control" name="info" id="info" value="{{conflicto.info_extra}}">
+                </div>
+                <div class="col col-12 col-md-3 mt-2">
+                    <label for="empleado">Empleado : </label>
+                    {% if conflicto.ispen == 0 %}
+                        <input type="text" class="form-control" name="empleado" id="empleado" 
+                            value="{{conflicto.empleado}}" readonly>
+                    {% else %}
+                    <input type="text" class="form-control" name="empleado" id="empleado" 
+                        value="{{conflicto.pensionado}}" readonly>
+                    {% endif %}
+                </div>
+                <div class="col col-12 col-md-3 mt-2">
+                    {% if conflicto.ispen == 0 %}
+                        <a href="" class="btn btn-success btn-sm"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#afiliado">
+                            VER EMPLEADO
+                        </a>
+                    {% else %}
+                        <a href="" class="btn btn-success btn-sm"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#afiliado">
+                            VER PENSIONADO
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col col-12 col-md-6">
+                    <label for="observaciones">Observaciones : </label>
+                    <textarea class="form-control" name="observaciones" id="observaciones"
+                    rows="5">{{conflicto.observaciones}}</textarea>
+                </div>
+                <div class="col-col-12 col-md-6">
+                    <label for="estatus">Estatus : </label>
+                    <select class="form-control" name="estatus" id="estatus">
+                        {% for est in estatus %}
+                            {% if est.id == estatusid %}
+                                <option value="{{est.id}}" selected>{{est.estatus}}</option>
+                            {% else %}
+                                <option value="{{est.id}}">{{est.estatus}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- Otro Renglón -->
+        <div class="form-group">
+            <div class="row">
+                <div class="col col-12 text-center mt-3">
+                    <button type="submit" class="btn btn-success btn-sm">Actualizar</button>                
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Ventana Modal -->
+    <div class="modal fade" id="afiliado" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <p>Nombre Afiliado</p>
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <h6 id="modal_body"> <p>{{n}}</p> </h6>
+                </div>
+            </div>
+        </div>
+     </div>
+</section>
+<!-- <script src="{{url_for('static', filename='js/app.js')}}" ></script> -->
+
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

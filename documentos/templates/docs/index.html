@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container-sm mt-5">
+    <div class="card-header text-center div-2">
+        <img src="{{url_for('static', filename = 'imgs/sueisssteson_2.png')}}" alt=""
+        class="logo-img">
+    </div>
+    <div class="card-header justify-content-center div-2">
+        <nav class="navbar">
+            <h1>{% block title %}Lista de Documentos - {{asunto}}{% endblock %}</h1>
+        </nav>
+    </div>
+    {% if docs %}
+    <table class="display table responsive div-1">
+        <thead>
+            <tr>
+                <th class="col">Nombre</th>
+                <th class="col">Documento</th>
+                <th class="col">Asunto</th>
+                <th class="col">Fecha</th>
+                <th class="col">Usuario</th>
+                <th class="col" colspan="2">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in docs | reverse %}
+            <!--{% if g.user.id == d.usuario %}-->
+            <tr>
+                <td>
+                    <p>{{ d.nombre }}</p>
+                </td>
+                <td>
+                    <!--<p>{{ d.documento }}</p>-->
+                    {% if d.exte == '.jpg' %}
+                    <p>
+                        <a href="{{ url_for('visor.mostrar', id = d.id, ext = d.exte, sria = d.secretaria) }}"><img src="{{url_for('static', filename = 'imgs/imagen.png')}}" width="40px" height="40px" alt="">{{d.exte}}</a>
+                    </p>
+                    {% elif d.exte == '.jpeg' %}
+                    <p>
+                        <a href="{{ url_for('visor.mostrar', id = d.id, ext = d.exte, sria = d.secretaria) }}"><img src="{{url_for('static', filename = 'imgs/imagen.png')}}" width="40px" height="40px" alt="">{{d.exte}}</a>
+                    </p>
+                    {% elif d.exte == '.png' %}
+                    <p>
+                        <a href="{{ url_for('visor.mostrar', id = d.id, ext = d.exte, sria = d.secretaria) }}"><img src="{{url_for('static', filename = 'imgs/imagen.png')}}" width="40px" height="40px" alt="">{{d.exte}}</a>
+                    </p>
+                    {% elif d.exte == '.tif' %}
+                    <p>
+                        <a href="{{ url_for('visor.mostrar', id = d.id, ext = d.exte, sria = d.secretaria) }}"><img src="{{url_for('static', filename = 'imgs/imagen.png')}}" width="40px" height="40px" alt="">{{d.exte}}</a>
+                    </p>
+                    {% elif d.exte == '.tiff' %}
+                    <p>
+                        <a href="{{ url_for('visor.mostrar', id = d.id, ext = d.exte, sria = d.secretaria) }}"><img src="{{url_for('static', filename = 'imgs/imagen.png')}}" width="40px" height="40px" alt="">{{d.exte}}</a>
+                    </p>
+                    {% else %}
+                    <p>
+                        <a href="{{ url_for('visor.mostrar', id = d.id, ext = d.exte, sria = d.secretaria) }}"><img src="{{url_for('static', filename = 'imgs/pdf.png')}}" width="40px" height="40px" alt="">{{d.exte}}</a>
+                    </p>
+                    {% endif %}
+                </td>
+                <td>
+                    <p>{{ d.asunto }}</p>
+                </td>
+                <td>
+                    <p>{{ d.fecha.strftime('%d-%m-%Y') }}</p>
+                </td>
+                <td>
+                    <p>{{ d.usuario }}</p>
+                </td>
+                <td>
+                    <a href="{{ url_for('docs.update', id = d.id, sria = d.secretaria) }}" class="btn btn-primary btn-sm">Editar</a>
+                </td>
+                <td>
+                    <a href="{{ url_for('docs.delete', id = d.id, a = d.asunto, sria = d.secretaria) }}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            <!--{% endif %}-->
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h4 class="text-center">NO HAY REGISTROS</h4>
+    {% endif %}
+</section>
+
+{% endblock %}

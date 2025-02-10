@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<script>
+    // ######### BUSCADOR TRABAJADORES ##########
+    $(document).ready(function() {
+        $('#lookupt').DataTable(
+        {
+            "responsive": true
+            });
+        $('#lookupt_filter input').focus()
+        //$('#lookup_filter [type="search"]').focus()
+    });
+
+    // ######### BUSCADOR TRABAJADORES ##########
+    $(document).ready(function() {
+        $('#lookupp').DataTable(
+        {
+            "responsive": true
+            });
+        $('#lookupp_filter input').focus()
+        //$('#lookup_filter [type="search"]').focus()
+    });
+  </script>
+
+<section class="container justify-content-center mt-5">
+    <h3 class="titulo-crear text-center mt-3">{% block title %}Ingresar Asunto Conflitctos{% endblock %}</h3>
+    <form method="post">
+        <div class="form-group">
+            <div class="row">
+                <!-- Asunto -->
+                <div class="col-12 col-sm-6 mb-2">
+                    <label for="asunto">Asuntos Conflictos</label>
+                    <select name="asunto" id="asunto" class="form-control form-select form-select-sm"
+                    aria-level=".form-select-sm example" required>
+                        <option selected>-- SELECCIONE OPCIÓN --</option>
+                        {% for a in asuntos %}
+                            <option value="{{ a.id }}">{{ a.asunto }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!-- Folio -->
+                <div class="col-12 col-sm-6 mb-2">
+                    <label for="folio">Folio : </label>
+                    <input type="number" class="form-control" name="folio" id="folio" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <!-- Num. de Empleado -->
+                <div class="col-12 col-sm-6 mb-2">
+                    <label for="trabajador">Num. Trabajador</label>
+                    <input type="text" class="form-control" name="trabajador" 
+                        id="trabajador">
+                    <a href="#" id="val_trabajador" class="btn btn-success mt-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#mtrabajadores"
+                        onclick="valCheckBox()">
+                        Validar Trabajador</a>
+                </div>
+                <!-- Num. Pensionado -->
+                <div class="col-12 col-sm-6 mb-2">
+                    <label for="pensionado">Num. Pensionado</label>
+                    <input type="text" class="form-control" name="pensionado" 
+                        id="pensionado">
+                    <a href="#" id="val_pensionado" class="btn btn-success mt-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#mpensionados"
+                        onclick="valCheckBox()">
+                        Validar Pensionado</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- Opción es Pensionado -->
+            <div class="row">
+                <div class="col-12 col-sm-6 mb-2">
+                    <input type="checkbox" class="form-check-input" name="es_pens" 
+                    id="es_pens" value="1" onchange="validar()">
+                    <label for="es_pens" class="form-check-label">Es Pensionado?</label>
+                </div>
+                <!-- Id Secretaría -->
+                <div class="col-12 col-sm-6 mb-2">
+                    <label for="secretaria">Secretaria</label>
+                    <input type="text" class="form-control" name="secretaria" id="secretaria"
+                     value="{{g.user.secretaria}}" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row d-flex">
+                <!-- Cláusula / Convenio -->
+                <div class="col-12 col-sm-6 mb-2">
+                    <label for="clausula">Cláusula / Convenio</label>
+                    <input type="text" class="form-control" name="clausula" id="clausula">
+                </div>
+                <!-- Información Extra -->
+                <div class="col-12 col-sm-6 mb-2">
+                    <label for="info_extra">Información Extra</label>
+                    <input type="text" class="form-control" name="info_extra" id="info_extra">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row d-flex">
+                <!-- Fecha de Captura -->
+                <div class="col-12 col-sm-6 mb-2">
+                    <label for="fecha">Fecha de Captura</label>
+                    <input type="text" class="form-control" name="fecha" id="fecha" value="{{c_date}}" readonly />
+                </div>
+                 <!-- Observaciones -->
+                <div class="col-12 col-sm-6 mb-2">
+                    <label for="observaciones">Observaciones</label>
+                    <textarea class="form-control" name="observaciones" id="observaciones" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row d-flex col-12 col-sm-6">
+                <!-- Estatus -->
+                <div class="col-12 col-sm-6 mb-2">
+                    <label for="estatus">Estatus</label>
+                    <select class="form-control form-select form-select-sm" 
+                        name="estatus" id="estatus" required>
+                        <option selected>-- SELECCIONE OPCIÓN --</option>
+                        {% for e in estatus %}
+                            <option value="{{e.id}}">{{e.estatus}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <input type="submit" class="boton btn btn-primary" value="Guardar">
+            <a href="{{url_for('conflictos.index')}}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+
+</section>
+<!-- ### MODAL TRABAJADORES ### -->
+<div class="modal fade" id="mtrabajadores" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center"><p>Seleccione Trabajadaor</p></h5>
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="lookupt" class="display responsive" width="100%">
+                    <thead>
+                        <tr>
+                            <th scope="col">Num</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for t in trabs %}
+                            <tr>
+                                <td id="{{t.num}}" class="td-content">{{ t.num }}</td>
+                                <td class="td-content">{{ t.nombre }}</td>
+                                <td id=""><button class="btn-success btn-modal-sel"
+                                            onclick="getValue('{{t.num}}')"
+                                            >
+                                                <p class="td-content">SELECCIONAR</p>
+                                            </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button class="btn btn-modal-close" data-bs-dismiss="modal">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ### MODAL PENSIONADOS ### -->
+<div class="modal fade" id="mpensionados" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center"><p>Seleccione Pensionado</p></h5>
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="lookupp" class="display responsive" width="100%">
+                    <thead>
+                        <tr>
+                            <th scope="col">Num</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for t in pens %}
+                            <tr>
+                                <td id="{{t.num}}" class="td-content">{{ t.num }}</td>
+                                <td class="td-content">{{ t.nombre }}</td>
+                                <td id=""><button class="btn-success btn-modal-sel"
+                                            onclick="getValue('{{t.num}}')"
+                                            >
+                                                <p class="td-content">SELECCIONAR</p>
+                                            </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button class="btn btn-modal-close">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+<script>
+    window.onload = validar();
+</script>
+<script src="{{url_for('static',filename = 'js/app.js')}}"></script>
+{% endblock %}  

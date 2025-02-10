@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container-sm">
+    <h3 class="text-center mt-3 mb-3">{% block title %}Ingresar Documento{% endblock %}</h3>
+    <form action="" method="post" enctype="multipart/form-data">
+        <!--Nombre-->
+        <div class="form-group">
+            <label for="nombre">Nombre Documento</label>
+            <input type="text" class="form-control" name="nombre" id="nombre" required>
+        </div>
+        <!-- Documento-->
+        <div class="form-group">
+            <label for="documento">Cargue el Documento</label>
+            <div class="input-group">
+                <label class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Cargar <input accept=".jpg,.jepg,.png,.tif,.tiff,.pdf" multiple
+                                class="hidden" name="documento" id="documento" type="file">
+                    </span>
+                </label>
+            </div>
+        </div>
+         <!-- Folio -->
+         <div class="form-group">
+            <input type="text" class="form-control" id = "folio" name="folio" value="{{folio}}" hidden>
+         </div>
+        <!-- Asunto id-->
+        <div class="form-group">
+            <input type="text" class="form-control" id="asunto_id" name="asunto_id" value="0" readonly hidden>
+        </div>
+        <!-- Asunto STYC -->
+        <div class="form-group">
+            <label for="asunto_id">ID Asunto</label>
+            <input type="text" class="form-control" id="asunto_styc" name="asunto_styc" value="{{asunto_id}}" readonly>
+        </div>
+        {% if sria == 5 or sria == 13%}
+            <!-- Descripción del Asunto -->
+             <div class="form-group">
+                <label for="asunto">Desc. Asunto</label>
+                <input type="text" class="form-control" id="asunto", name="asunto", value="{{asunto}}" readonly>
+             </div>
+        {% endif %}
+        <!-- Fecha-->
+        <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input type="date" class="form-control" name="fecha" id="fecha" value="{{c_date}}" readonly/>
+        </div>
+        <!-- Id Usuario-->
+        <div class="form-group">
+            <label for="usuario">Usuario</label>
+            <input type="text" name="usuario" id="usuario" value="{{g.user.usuario}}" disabled>
+        </div>
+        <br>
+        <div class="text-center">
+            <input type="submit" class="btn btn-primary" value="Guardar">
+            <a href="{{url_for('asuntos.index')}}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

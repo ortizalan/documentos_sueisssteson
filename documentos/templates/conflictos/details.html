@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="container mt-3">
+    <div class="card-header text-center div-2">
+        <img src="{{url_for('static', filename = 'imgs/sueisssteson_2.png')}}" class="logo-img" alt="">
+    </div>
+    <div class="card-header justify-content-center div-2">
+        <nav class="navbar">
+            <h1 class="titulo-asuntos">{% block title %}Detalle Asunto{% endblock %}</h1>
+        </nav>
+    </div>
+    <div class="row mb-2">
+        <div class="col col-12 col-md-6 mt-2">
+            <label for="folio">Folio :</label>
+            <input type="text" id="folio" name="folio" value="{{conflicto.folio}}" class="form-control" readonly>
+        </div>
+        <div class="col col-12 col-md-6 mt-2">
+            <label for="secretaria" >Secretaría :</label>
+            <input type="text" name="secretaria" id="secretaria" value="{{sria}}" class="form-control" readonly>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col col-12 col-md-6 mt-2">
+            <label for="asunto">Asunto : </label>
+            <input type="text" name="asunto" id="asunto" value="{{asunto}}" class="form-control" readonly>
+        </div>
+        <div class="col col-12 col-md-3 mt-2">
+            <label for="empleado">Empleado : </label>
+            {% if conflicto.ispen == 0 %}
+                <input type="text" name="empleado" id="empleado" value="{{conflicto.empleado}}" class="form-control" readonly>
+            {% else %}
+                <input type="text" name="empleado" id="empleado" value="{{conflicto.pensionado}}" class="form-control" readonly>
+            {% endif %}
+        </div>  
+        <div class="col col-12 col-md-3 mt-2">
+            {% if conflicto.ispen == 0 %}
+                <button type="button" 
+                    class="btn modal-btn btn-success btn-sm"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#agremiado"
+                    id="view_nombre">
+                    VER EMPLEADO
+                </button>
+            {% else %}
+                <button type="button" 
+                    class="btn modal-btn btn-success btn-sm"
+                    data-toggle="modal" 
+                    data-target="#agremiado"
+                    id="view_nombre">
+                VER PENSIONADO
+                </button>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col col-12-col-md-6 mt-2">
+            <label for="clausula">Cláusula / Convenio</label>
+            <input type="text" name="clausula" id="clausula" class="form-control" 
+                value="{{conflicto.clausula_convenio}}" readonly>
+        </div>
+        <div class="col col-12 col-md-6 mt-2">
+            <label for="info">Información Extra : </label>
+            <input type="text" name="info" id="info" class="form-control" 
+                value="{{conflicto.info_extra}}" readonly>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col col-12 col-md-6">
+            <label for="observaciones">Observaciones : </label>
+            <textarea name="observaciones" id="observaciones" class="form-control" 
+            rows="5" readonly>{{conflicto.observaciones}}</textarea>
+        </div>
+        <div class="col col-12 col-md-6">
+            <label for="fecha">Fecha de Captura : </label>
+            <input type="text" name="fecha" id="fecha" class="form-control" value="{{conflicto.fecha}}" readonly >
+        </div>
+    </div>
+    <input type="text" name="afiliado" id="afiliado" value="{{nombre}}" class="form-control" readonly hidden>
+    <!-- Ventana Modal -->
+     <div class="modal fade" id="agremiado" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <p>Nombre Afiliado</p>
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <h6 id="modal_body"> <p>{{nombre}}</p> </h6>
+                </div>
+            </div>
+        </div>
+     </div>
+</section>
+ 
+<!-- <script src="{{url_for('static',filename = 'js/app.js')}}"></script> -->
+ 
+{% endblock %}

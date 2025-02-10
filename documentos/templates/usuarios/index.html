@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="container sm mt-5">
+
+    <div class="card-header text-center div-2">
+        <img src="{{url_for('static', filename = 'imgs/sueisssteson_2.png')}}" alt="">
+    </div>
+    <div class="card-header content-justify-center div-2">
+        <nav class="navbar">
+            <h3>{% block title %}Lista de Usuarios{% endblock %}</h3>
+        </nav>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="col">Nombre</th>
+                <th class="col">Ap. Paterno</th>
+                <th class="col">Ap. Materno</th>
+                <th class="col">Secretaria</th>
+                <th class="col">Usuario</th>
+                <th class="col">Password</th>
+                <th class="col">Comité</th>
+                <th class="col">Estatus</th>
+                <th class="col" colspan="2">Opciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for u in usuarios %}
+            <tr>
+                <td>
+                    <p>{{u.nombres}}</p>
+                </td>
+                <td>
+                    <p>{{u.ap_paterno}}</p>
+                </td>
+                <td>
+                    <p>{{u.ap_materno}}</p>
+                </td>
+                <td>
+                    <p>{{u.secretaria}}</p>
+                </td>
+                <td>
+                    <p>{{u.usuario}}</p>
+                </td>
+                <td>
+                    <p id="password">{{u.password}}</p>
+                </td>
+                <td>
+                    <p>{{u.comite}}</p>
+                </td>
+                <td>
+                    {% if u.estatus == 1 %}
+                    <span class="text-success">ACTIVO</span>
+                    {% elif u.estatus == 2 %}
+                    <span class="text-wrning">INACTIVO</span>
+                    {% else %}
+                    <span class="text-danger">BAJA</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="" class="btn btn-info btn-sm">Editar</a>
+                </td>
+                <td>
+                    <a href="" 
+                        class="btn btn-warning btn-sm" 
+                        data-bs-toggle="modal"
+                        data-bs-target="#myModal">
+                        Ver Password
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1">
+        <div class="modal-dialog">
+            <!-- Modal content -->
+            <div class="modal-content text-center">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title">CONTRASEÑA</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <h6 class="moda_body">TEXTO</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block footer %}
+    <script>
+        function b64DecodeUnicode(str) {
+            // Going backwards: from bytestream, to percent-encoding, to original string.
+            return decodeURIComponent(atob(str).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+        }
+        let str = 
+        b64DecodeUnicode();
+    </script>
+{% endblock %}

@@ -1,0 +1,450 @@
+.div-1{
+    background-color: lightgray;
+}
+
+.div-2{
+    background-color: black;
+    color: white;
+}
+
+.div-black-form{
+    padding-top: 20px;
+    background: #000;
+    color: #fff;
+    font-family: 'Open Sans',sans-serif;
+}
+
+.text-white{
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.text-bold{
+    font-weight: bold;
+}
+
+.btn-black{
+    background-color: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Imágenes en div */
+
+div-2{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+div.logodiv{
+    width: 200px;
+    height: 200px;
+    align-items:center;
+    /*display: table;*/
+}
+
+div.logodiv img{
+    width: 100px;
+    height: 100px;
+}
+
+.col-div{
+    padding-top: 10;
+}
+
+.bg-color-lightgray{
+    background-color: lightgray;
+}
+
+.logo-img-usr{
+    width: 100px;
+    height: 120px;
+    padding-top: 30px;
+}
+/* 
+Efectos Botones
+*/
+
+a.btn-black:hover{
+    background-color: grey;
+    color: black;
+    font-weight: bolder;
+}
+
+a.btn-black:active{
+    background-color: rgb(255, 255, 121);
+}
+
+a:hover{
+    color: gray;
+}
+
+.submit.btn-black:hover{
+    background-color: grey;
+    color: black;
+    font-weight: bolder;
+}
+
+
+
+/*
+Nav tags
+*/
+
+.nav-1{
+    background-color: black;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+}
+
+.nav-2{
+    background-color: black;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* *** NAVBARS *** */
+
+.main{
+    background: #000;
+}
+
+.navbar_black{
+    padding-top: 10px;
+    background: #000;
+    color: #fff;
+}
+
+
+a.menu-item{
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    font-family: 'Roboto',sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+a.menu-item:hover{
+    text-decoration: none;
+    color: #e5e5e5;
+}
+
+
+a.nav-link:hover{
+    text-decoration: none;
+    color: #fff;
+}
+
+.intro{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+.intro-lead{
+    font-family: 'Roboto',sans-serif;
+    font-weight: 300;
+}
+
+.titulo-crear{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.titulo-asuntos{
+    font-family: 'Roboto',sans-serif;
+    font-weight: 400;
+}
+
+.table-header{
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+}
+.table-body{
+    font-family: 'Roboto',sans-serif;
+    font-size:14px;
+    font-weight: 300;
+}
+
+/* ------  BOTONES  ------ */
+.boton-nuevo{
+    height: 40px;
+    width: 130px;
+    background: #38812e;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size:medium;
+    font-weight: bold;
+    border: 1px solid #fff;
+    border-radius: 4px;
+}
+
+.boton-ver{
+    height: 30px;
+    width: 80px;
+    background: #999;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.boton-editar{
+    height: 30px;
+    width: 80px;
+    background: #4ab8d3;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.boton-add-doc{
+    height: 30px;
+    width: 150px;
+    background: #9ae484;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.boton-ver-docs{
+    height: 30px;
+    width: 130px;
+    background: #54cfff;
+    font-family: 'Open Sans',sans-serif;
+    font-size: small;
+    font-weight: 500;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.btn-modal-sel{
+    background: #37772f;
+    height: 30px;
+    width: 110px;
+    font-family: 'Roboto',sans-serif;
+    size: 9px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+.btn-modal-close{
+    background: #534f4f;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    border-radius: 3px;
+    border: 1px solid black;
+    color: #fff;
+}
+
+.boton-guardar{
+    height: 50px;
+    width: 120px;
+    background: #17640d;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+/* =====  TABLES ===== */
+
+.td-content{
+    font-family: 'Open Sans',sans-serif;
+    font-size: small;
+}
+
+/* ==== PÁRRAFOS ==== */
+.p-detalles{
+    font-family: 'Roboto', sans-serif;
+    font-size: small;
+    font-weight: normal;
+}
+
+.p-detalles-estatus{
+    font-family: 'Roboto', sans-serif;
+    font-size: small;
+    font-weight: bold;
+}
+
+.p-forms{
+    font-family: 'Roboto', sans-serif;
+    font-size: normal;
+    font-weight: normal;
+}
+
+/* ------ Formas ------ */
+.form-design{
+    background: #f1f1f1;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* ---- MEDIAQUERIES ----*/ 
+/* --- xs --- */
+@media screen and (max-width: 320px) {
+    .col-div{
+        margin-top: 5;
+    }
+
+}
+/* --- sm --- */
+@media screen and (max-width: 576px) {
+    .logo-img{
+        display: none;
+    }
+    .logo-img-usr{
+        display: none;
+    }
+    .div-2{
+       font-size: 12px;
+       font-weight: bold;
+    }
+    .container{
+        margin-top: auto;
+    }
+    a.btn-black{
+        width: 300px;
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .p-detalles{
+        font-family: 'Roboto', sans-serif;
+        font-size: x-small;
+        font-weight: normal;
+    }
+    
+    .p-detalles-estatus{
+        font-family: 'Roboto', sans-serif;
+        font-size: x-small;
+        font-weight: normal;
+    }
+    
+}
+/* --- md --- */
+@media screen and (max-width: 768px) {
+    .menu a svg{
+        display: none;
+    }
+    a.menu-item{
+        text-decoration: none;
+        color: #fff;
+        padding: 3px ;
+        font-family: 'Roboto',sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+    }
+    .folder-img{
+        display: none;
+    }
+    .logo-img{
+        width: 80px;
+        height: 80px;
+    }
+    .logo-img-usr{
+        width: 80px;
+        height: 100px;
+        padding-top: 30px;
+    }
+    /* ------  BOTONES  ------ */
+    .boton-nuevo{
+        height: 30px;
+        width: 65px;
+        background: #38812e;
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+        font-size:small;
+        font-weight: normal;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        text-align: center;
+        padding: 0;
+    }
+    .boton-ver{
+        height: 30px;
+        width: 50px;
+        background: #999;
+        font-family: 'Open Sans', sans-serif;
+        font-size: x-small;
+        font-weight: normal;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+    .boton-editar{
+        height: 30px;
+        width: 50px;
+        background: #4ab8d3;
+        font-family: 'Open Sans',sans-serif;
+        font-size: x-small;
+        font-weight: normal;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+    .boton-add-doc{
+        height: 30px;
+        width: 120px;
+        background: #9ae484;
+        font-family: 'Open Sans',sans-serif;
+        font-size: x-small;
+        font-weight: normal;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+
+    .boton-ver-docs{
+        height: 30px;
+        width: 120px;
+        background: #54cfff;
+        font-family: 'Open Sans',sans-serif;
+        font-size: x-small;
+        font-weight: normal;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+
+    .boton-guardar{
+        height: 30px;
+        width: 120px;
+        background: #17640d;
+        color: #fff;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        border: 1px solid black;
+        border-radius: 3px;
+    }
+
+    /* ########### TÍTULOS ########### */
+    .titulo-asuntos{
+        font-family: 'Roboto',sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+    }
+    /*--- Párrafos ---*/
+    .p-forms{
+        font-family: 'Roboto', sans-serif;
+        font-size: small;
+        font-weight: normal;
+    }
+
+}
+/* --- lg --- */
+@media screen and (max-width: 992px) {
+
+}
+/* --- xl --- */
+@media screen and (max-width: 1200px) {
+
+}
+/* --- xxl --- */
+@media screen and (max-width: 1400px) {
+
+}
+

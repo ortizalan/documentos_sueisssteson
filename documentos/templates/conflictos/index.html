@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="container mt-5">
+    <div class="card-header text-center div-2">
+        <img src="{{url_for('static', filename = 'imgs/sueisssteson_2.png')}}" alt=""
+        class="logo-img">
+    </div>
+    <div class="card-header justify-content-center div-2">
+        <nav class="navbar">
+            <h1 class="titulo-asuntos">{% block title %}Listado de Asuntos{% endblock %}</h1>
+            <a href="{{url_for('conflictos.create')}}" class="btn boton-nuevo">Nuevo</a>
+        </nav>
+    </div>
+    <div class="table-responsive">
+        <table class="display table responsive table-striped" style="width: 100%;">
+            <thead>
+                <tr class="table-header">
+                    <th class="col">Folio</th>
+                    <th class="col">Asunto</th>
+                    <th class="col">#</th>
+                    <th class="col">Trab./Pens.</th>
+                    <th class="col">Estatus</th>
+                    <th class="col">Detalles</th>
+                    <th class="col">Editar</th>
+
+                    <th class="col" colspan="2"><p class="text-center">Documentos</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c, a in contenedor | reverse %}
+                <tr class="table-body">
+                    <td>
+                        <p class="p-detalles">{{ c.folio }}</p>
+                    </td>
+                    <td>
+                        <p class="p-detalles">{{ a.asunto }}</p>
+                    </td>
+                    <td>
+                        {% if c.ispen == 1 %}
+                            <p class="p-detalles">Pensionado</p>
+                        {% else %}
+                            <p class="p-detalles">Activo</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if c.ispen == 1 %}
+                            <p class="p-detalles">{{ c.pensionado }}</p>
+                        {% else %}
+                            <p class="p-detalles">{{ c.empleado }}</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if c.estatus == 1%}
+                        <span class="text-primary"><b class="p-detalles-estatus">INGRESADO</b></span>
+                        {% elif c.estatus == 2 %}
+                        <span class="text-info"><b class="p-detalles-estatus">EN PROCESO</b></span>
+                        {% elif c.estatus == 3 %}
+                        <span class="text-warning"><b class="p-detalles-estatus">EN ESPERA</b></span>
+                        {% elif c.estatus == 4 %}
+                        <span class="text-success"><b class="p-detalles-estatus">CONCLUIDO</b></span>
+                        {% else %}
+                        <span class="text-danger"><b class="p-detalles-estatus">BAJA</b></span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{url_for('conflictos.details', folio = c.folio)}}" class="btn btn-sm boton-ver">VER</a>
+                    </td>
+                    <td>
+                        <a href="{{url_for('conflictos.update', folio = c.folio)}}" class="btn btn-sm boton-editar">EDITAR</a>
+                    </td>
+                    <td>
+                        {% if c.estatus == 4 or c.estatus == 5 %}
+                        <a href="#" class="btn btn-warning btn-sm">Deshabilitado</a>
+                        {% else %}
+                        <a href="{{url_for('docs.create', folio = c.folio, asunto_id = 0,asunto_styc = a.id ,sria = c.secretaria, asunto = a.asunto)}}" class="btn boton-add-doc">Agregar Documento</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{url_for('docs.index', a = a.id, sria = c.secretaria)}}" class="btn boton-ver-docs">Ver Documentos</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

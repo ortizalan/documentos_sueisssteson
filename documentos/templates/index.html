@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if g.user %}
+    <div class="container-sm text-center mt-5">
+        <table>
+            <tr>
+                <td class="col">
+                    <img src="{{url_for('static', filename='imgs/folder_2.png')}}" class="folder-img" width="100" height="100">
+                </td>
+                <td class="col mt-5" >
+                    <h1 class="display-5 intro mt-3">Bienvenido {{g.user.nombres}} al Control de Documentos y Asuntos del SUEISSSTESON.</h1>
+                    <br>
+                    <p class="lead intro-led">En esta aplicación se lleva a cabo del registro, control, monitoreo y
+                    baja de los trámites de las secretarías del Sueisssteson.
+                    </p>
+                    
+                    <hr class="my-4">
+                    <div class="justify-content-center">
+                        {% if g.user.secretaria == 5 or g.user.secretaria == 13 %}
+                            <a href="{{url_for('conflictos.index')}}" class="btn btn-black">Ver Asuntos Conflictos</a>
+                        {% else %}
+                            <a href="{{url_for('asuntos.index')}}" class="btn btn-black">Ver Asuntos</a>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    {% else %}
+    <div class="container-sm text-center mt-5">
+        <h1 class="display-4">Bienvenido al Control de Documentos y Asuntos del SUEISSSTESON.</h1>
+
+        <p class="lead">En esta aplicación se lleva a cabo del registro, control, monitoreo y
+            baja de los trámites de las secretarías del Sueisssteson.
+        </p>
+
+        <hr class="my-4">
+        <p>¿Tienes cuenta?</p>
+        <div class="d-flex justify-content-center">
+            <a href="{{url_for('auth.login')}}" class="btn btn-black">Iniciar Sesión</a>
+            <!-- <a href="{{url_for('auth.register')}}" class="btn btn-secondary mx-2">Registrarse</a> -->
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
